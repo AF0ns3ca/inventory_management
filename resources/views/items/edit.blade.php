@@ -21,9 +21,13 @@
                     <!-- Si la imagen es una URL -->
                     @if(filter_var($item->picture, FILTER_VALIDATE_URL))
                     <img src="{{ $item->picture }}" alt="Portada Actual" class="w-[100px] h-[100px] mt-2">
-                    <!-- Si la imagen es cargada localmente -->
-                    @else
+                    <!-- else if si la imagen se carga localmente -->
+                    @elseif($item->picture != null)
                     <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual" class="w-[100px] h-[100px] mt-2">
+                    <!-- sino hay imagen poner un div -->
+                    @else
+                    <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
+                        No picture</div>
                     @endif
                 </div>
                 <div class="p-4">

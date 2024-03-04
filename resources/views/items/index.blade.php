@@ -87,6 +87,20 @@
                                 <tr class="item-row cursor-pointer hover:bg-gray-750" data-id="{{ $item->id }}"
                                     data-available="{{ $item->activeLoan() ? 'false' : 'true' }}">
                                     <td class="px-6 py-4">
+                                        <div class="flex justify-center h-20 w-20">
+                                        @if(filter_var($item->picture, FILTER_VALIDATE_URL))
+                                            <img src="{{ $item->picture }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
+                                        <!-- else if si la imagen se carga localmente -->
+                                        @elseif($item->picture != null)
+                                            <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
+                                        <!-- sino hay imagen poner un div -->
+                                        @else
+                                            <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
+                                            No picture</div>
+                                        @endif
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <div id="nombre-item"
                                             class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
                                             {{ $item->name }}
@@ -96,18 +110,7 @@
                                         <div class="text-center text-sm text-gray-900 dark:text-gray-200">
                                             {{ $item->description }}</div>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex justify-center h-20 w-20">
-                                            @if ($item->picture)
-                                                <img src="{{ asset(Storage::url($item->picture)) }}"
-                                                    alt="{{ $item->name }}" class="h-20 w-20 object-cover rounded-md">
-                                            @else
-                                                <div
-                                                    class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
-                                                    No picture</div>
-                                            @endif
-                                        </div>
-                                    </td>
+                                    
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-center text-sm text-gray-900 dark:text-gray-200">
                                             ${{ $item->price }}</div>
@@ -124,7 +127,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex justify-center gap-2">
                                             @php
-                                                $activeLoan = $item->activeLoan();
+    $activeLoan = $item->activeLoan();
                                             @endphp
 
                                             <a href="{{ route('items.edit', $item->id) }}"
