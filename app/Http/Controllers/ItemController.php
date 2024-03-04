@@ -27,7 +27,7 @@ class ItemController extends Controller
      */
     public function create(): View
     {
-        return view('items.create', [
+        return view('items.store', [
             'boxes' => Box::all(),
         ]);
     }
