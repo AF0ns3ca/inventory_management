@@ -87,7 +87,8 @@
                                 <tr class="item-row cursor-pointer hover:bg-gray-750" data-id="{{ $item->id }}"
                                     data-available="{{ $item->activeLoan() ? 'false' : 'true' }}">
                                     <td class="px-6 py-4">
-                                        <div id="nombre-item" class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
+                                        <div id="nombre-item"
+                                            class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
                                             {{ $item->name }}
                                         </div>
                                     </td>
@@ -135,14 +136,14 @@
                                                     class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 focus:outline-none focus:underline">Delete</button>
                                             </form>
 
-                                            {{-- @if ($activeLoan)
+                                            @if ($activeLoan)
                                                 <a href="{{ route('loans.show', $activeLoan->id) }}"
                                                     class="text-orange-600 dark:text-orange-400 hover:text-orange-900 dark:hover:text-orange-300 focus:outline-none focus:underline">View
                                                     loan details</a>
                                             @else
-                                                <a href="{{ route('loans.create', ['item_id' => $item->id]) }}">Crear
+                                                <a href="{{ route('loans.create', $item->id) }}">Crear
                                                     préstamo</a>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
