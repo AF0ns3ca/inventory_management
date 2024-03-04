@@ -53,112 +53,61 @@
                             <tr>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Name
-                                </th>
-                                <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Description
-                                </th>
-                                <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     Picture
+                                <th
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    Nombre
                                 </th>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Price
+                                    Caja
                                 </th>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Box
-                                </th>
-                                <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                                <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Available
+                                    Acciones
                                 </th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($items as $item)
-                                <tr class="item-row cursor-pointer hover:bg-gray-750" data-id="{{ $item->id }}"
-                                    data-available="{{ $item->activeLoan() ? 'false' : 'true' }}">
-                                    <td class="px-6 py-4">
-                                        <div class="flex justify-center h-20 w-20">
-                                        @if(filter_var($item->picture, FILTER_VALIDATE_URL))
-                                            <img src="{{ $item->picture }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
+                                    <tr>
+                                        <td>
+                                            @if(filter_var($item->picture, FILTER_VALIDATE_URL))
+                                                <img src="{{ $item->picture }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
                                         <!-- else if si la imagen se carga localmente -->
-                                        @elseif($item->picture != null)
-                                            <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
+                                            @elseif($item->picture != null)
+                                                <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
                                         <!-- sino hay imagen poner un div -->
-                                        @else
-                                            <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
-                                            No picture</div>
-                                        @endif
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div id="nombre-item"
-                                            class="text-center text-sm font-medium text-gray-900 dark:text-gray-200">
-                                            {{ $item->name }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-center text-sm text-gray-900 dark:text-gray-200">
-                                            {{ $item->description }}</div>
-                                    </td>
-                                    
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-center text-sm text-gray-900 dark:text-gray-200">
-                                            ${{ $item->price }}</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-center text-sm text-gray-900 dark:text-gray-200">
-                                            @if ($item->box_id)
-                                                {{ $item->box->label }}
                                             @else
-                                                No box
-                                            @endif
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex justify-center gap-2">
-                                            @php
-    $activeLoan = $item->activeLoan();
-                                            @endphp
-
-                                            <a href="{{ route('items.edit', $item->id) }}"
-                                                class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 focus:outline-none focus:underline">Edit</a>
-                                            <form action="{{ route('items.destroy', $item->id) }}" method="POST">
+                                                <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
+                                                No picture</div>
+                                        @endif
+                                        </td>
+                                        <td id="nombre-item">{{ $item->name }}</td>
+                                        <!-- Se debe mostrar el nombre de la caja a la que pertenecen o si no pertenecen a ninguna debe ponerse sin caja -->
+                                        <td class="text-center">{{ $item->box ? $item->box->label : 'Sin caja' }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="w-full text-sm text-gray-900 dark:text-gray-100 flex flex-row justify-center items-center gap-2">
+                                            <a href="{{ route('items.edit', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Editar</a>
+                                            <a href="{{ route('items.show', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Ver Item</a>
+                                            <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full"
+                                                method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 focus:outline-none focus:underline">Delete</button>
+                                                <button title="Eliminar Item" id="delete-btn" class="w-full  bg-red-600 text-center rounded-lg p-2"
+                                                    type="submit">Eliminar</button>
                                             </form>
-
-                                            @if ($activeLoan)
-                                                <a href="{{ route('loans.show', $activeLoan->id) }}"
-                                                    class="text-orange-600 dark:text-orange-400 hover:text-orange-900 dark:hover:text-orange-300 focus:outline-none focus:underline">View
-                                                    loan details</a>
+                                            <!-- si active loan una cosa sino otra -->
+                                            @if($item->activeLoan())
+                                                <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
                                             @else
-                                                <a href="{{ route('loans.create', $item->id) }}">Crear
-                                                    préstamo</a>
+                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
                                             @endif
+                                            
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex justify-center">
-                                            @if ($activeLoan)
-                                                <div class="h-4 w-4 rounded-full bg-red-500"></div>
-                                            @else
-                                                <div class="h-4 w-4 rounded-full bg-green-500"></div>
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
+                                    </tr>
                             @endforeach
 
                         </tbody>

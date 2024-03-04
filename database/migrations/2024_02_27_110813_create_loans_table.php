@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('item_id')->constrained();
+            // Se añade una foreign key a la tabla items pero que permita borrar el item y mantener esto aqui
+            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
             $table->date('checkout_date');
             $table->date('due_date');
             $table->date('returned_date')->nullable();
