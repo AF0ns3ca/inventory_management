@@ -48,7 +48,10 @@
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div id="nombre-usuario" class="text-sm text-gray-900 dark:text-gray-100">
-                                            {{ $loan->user_id }}</div>
+                                            <!-- Poner el nombre del usuario que recibimos -->
+                                            {{ $loan->user_id }}
+
+                                            </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div id="nombre-item" class="text-sm text-gray-900 dark:text-gray-100">
@@ -77,7 +80,8 @@
                                             {{-- Un botón que aparezca si no hay fecha de retorno, si la hay poner préstamo completo --}}
                                             @if (!$loan->returned_date)
                                                 {{-- Mostrar el botón si no hay fecha de retorno --}}
-                                                <button class="btn">Botón de devolución</button>
+                                                <a href="{{ route('loans.edit', $loan->id) }}"
+                                                    class="btn btn-primary">Completar Prestamo</a>
                                             @else
                                                 {{-- Mostrar "Préstamo completo" si hay una fecha de retorno --}}
                                                 <div class="text-sm text-gray-900 dark:text-gray-100">

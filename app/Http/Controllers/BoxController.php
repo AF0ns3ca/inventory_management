@@ -25,7 +25,7 @@ class BoxController extends Controller
      */
     public function create(): View
     {
-        return view('boxes.create');
+        return view('boxes.store');
     }
 
     /**
@@ -96,9 +96,10 @@ class BoxController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Box $box)
+    public function destroy(String $id)
     {
-        $box->items()->update(['box_id' => null]);
+        $box = Box::find($id);
+        
         $box->delete();
 
         return redirect(route('boxes.index'));
