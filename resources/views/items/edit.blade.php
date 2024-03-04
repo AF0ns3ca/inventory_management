@@ -40,7 +40,7 @@
                 </div>
                 <div class="p-4">
                     <label for="price" class="block font-medium text-white">Price</label>
-                    <input type="text" name="price" id="price" class="form-input" value="{{ $item->price }}">
+                    <input type="number" name="price" id="price" class="form-input" value="{{ $item->price }}">
                 </div>
                 <div class="p-4">
                     <label for="box_id" class="block font-medium text-white">Box</label>

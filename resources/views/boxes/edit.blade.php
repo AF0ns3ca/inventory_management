@@ -12,17 +12,17 @@
                 @method('PUT')
                 <div class="p-4">
                     <label for="label" class="block font-medium text-white">Label</label>
-                    <input type="text" name="label" id="label" class="form-input">
+                    <input type="text" name="label" id="label" class="form-input" value="{{$box->label}}">
                 </div>
                 <div class="p-4">
                     <label for="location" class="block font-medium text-white">Location</label>
-                    <input type="text" name="location" id="location" class="form-input">
+                    <input type="text" name="location" id="location" class="form-input" value="{{$box->location}}">
                 </div>
 
                 <!-- Submit button -->
                 <div class="flex justify-end p-4">
                     <a href="{{ route('boxes.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="ml-2 btn btn-primary">Crear Caja</button>
+                    <button type="submit" class="ml-2 btn btn-primary">Guardar Cambios</button>
                 </div>
             </form>
         </div>
