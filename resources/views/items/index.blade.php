@@ -53,18 +53,18 @@
                             <tr>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Picture
+                                    {{ __('Picture') }}
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Nombre
+                                    {{ __('Nombre') }}
                                 </th>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Caja
+                                    {{ __('Caja') }}
                                 </th>
                                 <th
                                     class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                                    Acciones
+                                    {{ __('Acciones') }}
                                 </th>
                             </tr>
                         </thead>

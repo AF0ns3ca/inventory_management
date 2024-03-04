@@ -15,24 +15,23 @@
         <div class="flex flex-col justify-center max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="w-full flex flex-col justify-center p-6 text-gray-900 dark:text-gray-100">
-                    <table class="table-item w-full min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                    <table class="min-w-full w-full table-item" id="items-table">
+                        <thead>
                             <tr>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Label') }}
-                                </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Location') }}
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Actions') }}
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
+                        <tbody>
                             @foreach ($boxes as $box)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
