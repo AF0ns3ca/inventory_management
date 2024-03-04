@@ -46,9 +46,25 @@ class ItemController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            $validated['picture'] = $request->file('picture')->store('public/photos');
-        }
+            $path = $request->file('picture')->store('public/photos');
+            $validated['picture'] = $path;
+        } elseif ($request->has('url_picture')) {
+            // Obtener la URL de la picture desde la solicitud
+            $url = $request->input('url_picture');
 
+            // Validar si la URL es válida (puedes agregar más validaciones según tus necesidades)
+            if (filter_var($url, FILTER_VALIDATE_URL)) {
+                // Asignar la URL como la picture
+                $validated['picture'] = $url;
+            } else {
+                // En caso de que la URL no sea válida, asignar la picture base.jpg local
+                $validated['picture'] = null;
+            }
+        } else {
+            // Si no se proporciona ni un archivo ni una URL, asignar la picture null
+            $validated['picture'] = null;
+        }
+        
         Item::create($validated);
 
         return redirect(route('items.index'));
@@ -68,12 +84,12 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Item $item): View
+    public function edit(String $id): View
     {
         // $this->authorize('update', $item);
 
         return view('items.edit', [
-            'item' => $item,
+            'item' => Item::find($id),
             'boxes' => Box::all(),
         ]);
     }
@@ -81,7 +97,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, String $id)
     {
         // $this->authorize('update', $item);
 
@@ -94,13 +110,26 @@ class ItemController extends Controller
         ]);
 
         if ($request->hasFile('picture')) {
-            $validated['picture'] = $request->file('picture')->store('public/photos');
+            $path = $request->file('picture')->store('public/photos');
+            $validated['picture'] = $path;
+        } elseif ($request->has('url_picture')) {
+            // Obtener la URL de la picture desde la solicitud
+            $url = $request->input('url_picture');
 
-            if ($item->picture) {
-                Storage::delete($item->picture);
+            // Validar si la URL es válida (puedes agregar más validaciones según tus necesidades)
+            if (filter_var($url, FILTER_VALIDATE_URL)) {
+                // Asignar la URL como la picture
+                $validated['picture'] = $url;
+            } else {
+                // En caso de que la URL no sea válida, asignar la picture base.jpg local
+                $validated['picture'] = null;
             }
+        } else {
+            // Si no se proporciona ni un archivo ni una URL, asignar la picture null
+            $validated['picture'] = null;
         }
 
+        $item = Item::find($id);
         $item->update($validated);
 
         return redirect(route('items.index'));
