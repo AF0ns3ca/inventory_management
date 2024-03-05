@@ -106,5 +106,4 @@
 
 
     <script src="{{ asset('js/search.js') }}"></script>
-    <script src="{{ asset('js/table.js') }}"></script>
 </x-app-layout>
