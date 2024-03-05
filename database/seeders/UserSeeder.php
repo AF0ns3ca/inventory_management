@@ -44,5 +44,15 @@ class UserSeeder extends Seeder
             ],
             // Puedes añadir más usuarios aquí
         ]);
+        DB::table('users')->insert([
+            [
+                'name' => 'alvaro',
+                'email' => 'alvaro@alvaro.es',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Puedes añadir más usuarios aquí
+        ]);
     }
 }

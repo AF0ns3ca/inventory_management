@@ -33,16 +33,20 @@
                                         <td>{{ $item->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="w-full text-sm text-gray-900 dark:text-gray-100 flex flex-row justify-center items-center gap-2">
-                                            <a href="{{ route('items.edit', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">✒️</a>
-                                            <a href="{{ route('items.show', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">🔎</a>
+                                            <a href="{{ route('items.edit', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Editar</a>
+                                            <a href="{{ route('items.show', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Ver Item</a>
                                             <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Eliminar Item" id="delete-btn" class="w-full  bg-red-600 text-center rounded-lg p-2"
-                                                    type="submit">🗑️</button>
+                                                    type="submit">Eliminar</button>
                                             </form>
-                                            <a href="#" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">🤝🏻</a>
+                                            @if($item->activeLoan())
+                                                <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
+                                            @else
+                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
+                                            @endif
                                             
                                         </div>
                                     </td>

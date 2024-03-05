@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Loan;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
@@ -45,6 +46,8 @@ class LoanController extends Controller
         $user = auth()->user();
         $request['user_id'] = $user->id;
 
+        
+
         //Guarda el prestamo en la base de datos, debemos guardar el nombre del usuario que lo presta, el nombre del item y la fecha de devolucion
         $validatedData = $request->validate([
             'user_id' => 'required',
@@ -52,8 +55,12 @@ class LoanController extends Controller
             'checkout_date' => 'required',
             'due_date' => 'required',
         ]);
+
+        //pasamos una variable que guarde el nombre del item que coincida con item_id
+        $item = Item::find($request['item_id']);
         
-        Loan::create($validatedData);
+        //Le pasamos los users y los items a la vista
+        Loan::create($validatedData)::with('user', 'item')->get();
         return redirect()->route('loans.index');
 
 

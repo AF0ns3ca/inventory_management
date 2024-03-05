@@ -21,7 +21,7 @@
                             stroke="currentColor" class="-ml-1 mr-2 h-5 w-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                        New Item
+                        Crear Item
                     </a>
 
                     <div class="flex items-center">
@@ -80,7 +80,7 @@
                                                 <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual" class="h-20 w-20 mt-2 rounded-md">
                                         <!-- sino hay imagen poner un div -->
                                             @else
-                                                <div class="flex items-center justify-center h-20 w-20 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
+                                                <div class="flex items-center justify-center h-20 w-20 mt-2 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
                                                 No picture</div>
                                         @endif
                                         </td>
