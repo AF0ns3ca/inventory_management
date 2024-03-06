@@ -17,6 +17,7 @@ class LoanController extends Controller
         //Devuelve a la vista index con los prestamos
         return view('loans.index', [
             'loans' => Loan::all()
+            
         ]);
     }
 
@@ -30,6 +31,7 @@ class LoanController extends Controller
             // mandamos el item_id para que sea la opcion predeterminada
             'item_id' => Item::find($id),
             'items' => Item::all()
+            
         ]);
     }
 
@@ -77,7 +79,7 @@ class LoanController extends Controller
             'user' => User::find(Loan::find($id)->user_id),
             'item' => Item::find(Loan::find($id)->item_id)
         ]);
-        
+
 
     }
 
@@ -90,7 +92,11 @@ class LoanController extends Controller
         $loan = Loan::find($id);
         $loan->returned_date = date('Y-m-d');
         $loan->save();
-        return redirect()->route('loans.index');
+        //Se redirige a la vista index con el loan y el usuario que lo ha devuelto
+        return view('loans.index', [
+            'loans' => Loan::all(),
+            'user' => User::find(Loan::find($id)->user_id),
+        ]);
         
     }
 

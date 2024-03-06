@@ -18,6 +18,7 @@
                         <div>Fecha de préstamo: {{ $loan->checkout_date }}</div>
                         <div>Fecha de devolución: {{ $loan->due_date }}</div>
                         {{-- si loan no tiene returned date poner en curso, sino poner la returned date --}}
+
                         @if ($loan->returned_date == null)
                             <div>Estado: En curso</div>
                         @else
@@ -39,10 +40,14 @@
                             <div>
                                 @if (filter_var($item->picture, FILTER_VALIDATE_URL))
                                     <img src="{{ $item->picture }}" alt="Portada Actual"
-                                        class="w-[100px] h-[100px] mt-2">
-                                @else
+                                        class="w-[200px] h-[200px] mt-2">
+                                @elseif ($item->picture != null)
                                     <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual"
-                                        class="w-[100px] h-[100px] mt-2">
+                                        class="w-[200px] h-[200px] mt-2">
+                                @else
+                                    <div
+                                        class="flex items-center justify-center w-[200px] h-[200px] bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
+                                        No picture</div>
                                 @endif
                             </div>
                         </div>
@@ -54,8 +59,14 @@
                 <div class=" w-full flex flex-row justify-around p-4 gap-3">
                     {{-- si loan no tiene returned date poner un enlace a loans edit que diga devolver, sino un div que ponga completo --}}
                     @if ($loan->returned_date == null)
-                        <a href="{{ route('loans.edit', $loan->id) }}" title="Devolver"
-                            class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Devolver</a>
+                    {{-- si el user->id es igual al user autentificado que ponga devolver --}}
+                    @if ($user->id == Auth::user()->id)
+                    <a href="{{ route('loans.edit', $loan->id) }}" title="Devolver"
+                        class="w-full bg-red-600 text-center text-white rounded-lg p-2">Devolver</a>
+                    @else
+                    <div class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Prestado a {{$loan->user->name}}</div>
+                    @endif
+                        
                     @else
                     
                     <div class="w-full bg-green-600 text-center text-white rounded-lg p-2">Completo</div>
