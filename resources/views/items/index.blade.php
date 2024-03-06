@@ -52,18 +52,18 @@
                         <thead>
                             <tr>
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-2 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Picture') }}
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-2 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Nombre') }}
                                 </th>
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-2 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Caja') }}
                                 </th>
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-2 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Acciones') }}
                                 </th>
                             </tr>
@@ -81,32 +81,33 @@
                                         <!-- sino hay imagen poner un div -->
                                             @else
                                                 <div class="flex items-center justify-center h-20 w-20 mt-2 bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
-                                                No picture</div>
+                                                    <span class="text-center">{{$item->name}}</span>
+                                                </div>
                                         @endif
                                         </td>
-                                        <td id="nombre-item">{{ $item->name }}</td>
+                                        <td class="text-start" id="nombre-item">{{ $item->name }}</td>
                                         <!-- Se debe mostrar el nombre de la caja a la que pertenecen o si no pertenecen a ninguna debe ponerse sin caja -->
-                                        <td class="text-center">{{ $item->box ? $item->box->label : 'Sin caja' }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="w-full text-sm text-gray-900 dark:text-gray-100 flex flex-row justify-center items-center gap-2">
-                                            <a href="{{ route('items.edit', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Editar</a>
-                                            <a href="{{ route('items.show', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Ver Item</a>
-                                            <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button title="Eliminar Item" id="delete-btn" class="w-full  bg-red-600 text-center rounded-lg p-2"
-                                                    type="submit">Eliminar</button>
-                                            </form>
-                                            <!-- si active loan una cosa sino otra -->
-                                            @if($item->activeLoan())
-                                                <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
-                                            @else
-                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
-                                            @endif
-                                            
-                                        </div>
-                                    </td>
+                                        <td class="text-start">{{ $item->box ? $item->box->label : 'Sin caja' }}</td>
+                                        <td class="px-2 py-4 whitespace-nowrap">
+                                            <div class="w-full text-sm text-gray-900 dark:text-gray-100 flex flex-row justify-center items-start gap-2">
+                                                <a href="{{ route('items.edit', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Editar</a>
+                                                <a href="{{ route('items.show', $item->id) }}" title="Editar Item" class="w-full bg-slate-600 text-center rounded-lg p-2">Ver Item</a>
+                                                <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button title="Eliminar Item" id="delete-btn" class="w-full  bg-red-600 text-center rounded-lg p-2"
+                                                        type="submit">Eliminar</button>
+                                                </form>
+                                                <!-- si active loan una cosa sino otra -->
+                                                @if($item->activeLoan())
+                                                    <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
+                                                @else
+                                                    <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
+                                                @endif
+                                                
+                                            </div>
+                                        </td>
                                     </tr>
                             @endforeach
 

@@ -5,47 +5,54 @@
         </h2>
     </x-slot>
 
-    <div class="w-full max-w-7xl container mx-auto py-6 flex">
+    <div class="w-full max-w-7xl container mx-auto py-6 flex ">
         <div class="w-full max-w-7xl mx-28 bg-gray-700 rounded-lg shadow-md overflow-hidden flex flex-col">
-                <div class="w-full max-w-7xl p-4 flex flex-col">
-                <div class="w-full max-w-7xl flex flex-row justify-around">
-                    <div class="p-4">
-                        <div>Nombre: {{ $item->name }}</div>
-                        <div>Descripción: {{ $item->description }}</div>
-                        <div>Precio: {{ $item->price }}€</div>
+            <div class="w-full max-w-7xl p-4 flex flex-col items-center">
+                <div class="w-full max-w-7xl flex flex-row justify-center items-center px-28 relative">
+                    <a href="{{ route('items.index') }}"  class="absolute top-0 left-0 p-1" title="Volver">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="cursor-pointer w-6 h-6 dark:stroke-white hover:transition hover:duration-300 hover:ease-in-out hover:scale-150">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                        </svg>
+                    </a>
+                    <div class="w-full h-full p-4 flex flex-col justify-center items-start">
+                        <div class="dark:text-gray-100 text-3xl font-bold">{{ $item->name }}</div>
+                        <div class="dark:text-gray-100">{{ $item->description }}</div>
+                        <div class="dark:text-gray-100">Precio: {{ $item->price }}€</div>
                         <div>
                             @if ($item->box_id != null)
-                                <div class="text-sm text-gray-900 dark:text-gray-100">
+                                <div class=" text-gray-900 dark:text-gray-100">
                                     Caja: {{ $item->box->label }}</div>
                             @else
-                                <div class="text-sm text-gray-900 dark:text-gray-100">Sin caja</div>
+                                <div class=" text-gray-900 dark:text-gray-100">Sin caja</div>
                             @endif
                         </div>
 
                     </div>
-                    <div class="p-4">
-                        <div class="flex flex-col gap-3">
-                            <div>
-                                @if (filter_var($item->picture, FILTER_VALIDATE_URL))
+                    <div class="w-full h-full p-4 flex justify-end items-center">
+                            @if (filter_var($item->picture, FILTER_VALIDATE_URL))
                                     <img src="{{ $item->picture }}" alt="Portada Actual"
-                                        class="w-[100px] h-[100px] mt-2">
-                                @else
+                                        class="w-[200px] h-[200px] mt-2">
+                            @elseif ($item->picture != null)
                                     <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual"
-                                        class="w-[100px] h-[100px] mt-2">
-                                @endif
-                            </div>
-                        </div>
-
+                                        class="w-[200px] h-[200px] mt-2">
+                            @else
+                                    <div
+                                        class="flex items-center justify-center w-[200px] h-[200px] bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-lg">
+                                        <span class="text-center">{{$item->name}}</span>
+                                    </div>
+                            @endif
                     </div>
-
                 </div>
 
                 <div class=" w-full flex flex-row justify-around p-4 gap-3">
                     <a href="{{ route('items.edit', $item->id) }}" title="Editar Item"
                         class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Editar</a>
                     <!-- boton para volver atras -->
-                    <a href="{{ route('items.index') }}" title="Volver"
-                        class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Volver</a>
+                    @if($item->activeLoan())
+                                                <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
+                                            @else
+                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
+                                            @endif
                     <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full" method="post">
                         @csrf
                         @method('DELETE')

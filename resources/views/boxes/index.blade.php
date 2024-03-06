@@ -49,14 +49,14 @@
                         <thead>
                             <tr>
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Etiqueta') }}
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Ubicacion') }}
                                 </th>
                                 <th
-                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                    class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-start text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Acciones') }}
                                 </th>
                             </tr>

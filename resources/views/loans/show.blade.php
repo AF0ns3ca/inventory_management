@@ -10,27 +10,27 @@
                 <div class="w-full max-w-7xl p-4 flex flex-col">
                 <div class="w-full max-w-7xl flex flex-row justify-around">
                     <div class="p-4">
-                        <div>Artículo: {{ $item->name }}</div>
-                        <div>Descripción: {{ $item->description }}</div>
-                        <div>Precio: {{ $item->price }}€</div>
+                        <div class="text-white text-3xl font-bold">{{ $item->name }}</div>
+                        <div class="text-white">{{ $item->description }}</div>
+                        <div class="text-white">Precio: {{ $item->price }}€</div>
                         
-                        <div>Prestado a: {{ $user->name }}</div>
-                        <div>Fecha de préstamo: {{ $loan->checkout_date }}</div>
-                        <div>Fecha de devolución: {{ $loan->due_date }}</div>
+                        <div class="text-white">Prestado a: {{ $user->name }}</div>
+                        <div class="text-white">Fecha de préstamo: {{ $loan->checkout_date }}</div>
+                        <div class="text-white">Fecha de devolución: {{ $loan->due_date }}</div>
                         {{-- si loan no tiene returned date poner en curso, sino poner la returned date --}}
 
                         @if ($loan->returned_date == null)
-                            <div>Estado: En curso</div>
+                            <div class="text-white">Estado: Prestamo en curso</div>
                         @else
-                            <div>Estado: Devuelto</div>
+                            <div class="text-white">Estado: Devuelto</div>
                         @endif
 
                         <div>
                             @if ($item->box_id != null)
-                                <div class="text-sm text-gray-900 dark:text-gray-100">
+                                <div class=" text-gray-900 dark:text-gray-100">
                                     Caja: {{ $item->box->label }}</div>
                             @else
-                                <div class="text-sm text-gray-900 dark:text-gray-100">Sin caja</div>
+                                <div class=" text-gray-900 dark:text-gray-100">Sin caja</div>
                             @endif
                         </div>
 
@@ -46,8 +46,9 @@
                                         class="w-[200px] h-[200px] mt-2">
                                 @else
                                     <div
-                                        class="flex items-center justify-center w-[200px] h-[200px] bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-xs">
-                                        No picture</div>
+                                        class="flex items-center justify-center w-[200px] h-[200px] bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-lg">
+                                        <span class="text-center">{{$item->name}}</span>
+                                    </div>
                                 @endif
                             </div>
                         </div>

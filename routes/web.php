@@ -22,9 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/items.index', function () {
+    return view('items.index');
+})->middleware(['auth', 'verified'])->name('items.index');
 
 //Ruta a metodo index del controlador de items con usuario autentificado
 Route::get('/items', 'App\Http\Controllers\ItemController@index')->middleware(['auth', 'verified'])->name('items.index');
