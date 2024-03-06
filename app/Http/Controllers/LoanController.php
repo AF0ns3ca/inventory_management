@@ -69,9 +69,16 @@ class LoanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Loan $loans)
+    public function show(String $id)
     {
-        //
+        //Pasamos nombre de usuario, nombre de item y el loan entero a la vista
+        return view('loans.show', [
+            'loan' => Loan::find($id),
+            'user' => User::find(Loan::find($id)->user_id),
+            'item' => Item::find(Loan::find($id)->item_id)
+        ]);
+        
+
     }
 
     /**
