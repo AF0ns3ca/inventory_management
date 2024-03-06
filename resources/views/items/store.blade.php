@@ -12,32 +12,33 @@
 
                 <!-- Form fields for editing item data -->
                 <div class="w-full p-4">
-                    <div class="w-full mt-1 flex flex-col items-start">
+                    <div class="w-full mt-1 flex flex-col items-start gap-2 border-2 p-4 border-slate-600 rounded-md">
+                        <span class="text-white">Choose how to insert your picture:</span>
                         <div class="w-full">
                             <label for="picture" class="block font-medium text-white">Picture:</label>
-                            <input type="file" name="picture" id="picture" class="form-input w-full p-2">
+                            <input type="file" name="picture" id="picture" class="form-input w-full p-2 rounded-md">
                         </div>
                         <div class="w-full">
                             <label for="url_picture" class="block font-medium text-white">URL Picture:</label>
-                            <input type="text" name="url_picture" id="url_picture" placeholder="Picture URL..." class="form-input w-full p-2">
+                            <input type="text" name="url_picture" id="url_picture" placeholder="Picture URL..." class="form-input w-full p-2 rounded-md">
                         </div>
                     </div>
                 </div>
-                <div class="w-full p-4">
+                <div class="w-full px-4 py-2">
                     <label for="name" class="block font-medium text-white">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Name..." class="form-input w-full p-2">
+                    <input type="text" name="name" id="name" placeholder="Name..." class="form-input w-full p-2 rounded-md">
                 </div>
-                <div class="w-full p-4">
+                <div class="w-full px-4 py-2">
                     <label for="description" class="block font-medium text-white">Description</label>
-                    <input type="text" name="description" id="description" placeholder="Description..." class="form-input w-full p-2">
+                    <input type="text" name="description" id="description" placeholder="Description..." class="form-input w-full p-2 rounded-md">
                 </div>
-                <div class="w-full p-4">
+                <div class="w-full px-4 py-2">
                     <label for="price" class="block font-medium text-white">Price</label>
-                    <input type="number" name="price" id="price" placeholder="Price..." class="form-input w-full p-2">
+                    <input type="number" name="price" id="price" placeholder="Price..." class="form-input w-full p-2 rounded-md">
                 </div>
-                <div class="w-full p-4">
+                <div class="w-full px-4 py-2">
                     <label for="box_id" class="text-white">Box</label>
-                            <select name="box_id" id="box_id" class="form-control w-full p-2">
+                            <select name="box_id" id="box_id" class="form-control w-full p-2 rounded-md">
                                 @foreach ($boxes as $box)
                                     <option value="{{ $box->id }}">{{ $box->label }}</option>
                                 @endforeach
@@ -45,9 +46,9 @@
                 </div>
 
                 <!-- Submit button -->
-                <div class="w-full flex justify-center items-center p-4">
-                    <a href="{{ route('items.index') }}" class="w-full text-center text-white">Cancel</a>
-                    <button type="submit" class="w-full text-center text-white">Save Changes</button>
+                <div class="w-full flex justify-center items-center p-4 gap-2">
+                    <a href="{{ route('items.index') }}" class="w-full cursor-pointer bg-red-600 text-center text-white rounded-md p-2">Cancel</a>
+                    <button type="submit" class="w-full cursor-pointer bg-slate-600 text-center text-white rounded-md p-2">Save Changes</button>
                 </div>
             </form>
         </div>
