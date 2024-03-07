@@ -48,7 +48,7 @@
                 <!-- Submit button -->
                 <div class="w-full flex justify-center items-center p-4 gap-2">
                     <a href="{{ route('items.index') }}" class="w-full cursor-pointer bg-red-600 text-center text-white rounded-md p-2">Cancel</a>
-                    <button type="submit" class="w-full cursor-pointer bg-slate-600 text-center text-white rounded-md p-2">Save Changes</button>
+                    <button type="submit" class="w-full cursor-pointer bg-slate-600 text-center text-white rounded-md p-2">Create Item</button>
                 </div>
             </form>
         </div>

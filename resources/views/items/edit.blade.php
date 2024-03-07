@@ -52,7 +52,7 @@
                 </div>
                 <div class="w-full px-4 py-2">
                     <label for="price" class="block font-medium text-white">Price</label>
-                    <input type="number" name="price" id="price" placeholder="Price..." class="form-input w-full p-2 rounded-md"value="{{$item->price}}">
+                    <input type="number" name="price" id="price" placeholder="Price..." class="form-input w-full p-2 rounded-md" value="{{$item->price}}">
                 </div>
                 <div class="w-full px-4 py-2">
                     <label for="box_id" class="block font-medium text-white">Box</label>

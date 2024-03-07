@@ -79,14 +79,18 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div>
+                                            <div class="w-full flex flex-col gap-2">
                                                 {{-- Un botón que aparezca si no hay fecha de retorno, si la hay poner préstamo completo --}}
                                                 @if (!$loan->returned_date)
                                                     {{-- Mostrar el botón si no hay fecha de retorno --}}
                                                     @if ($loan->user_id == Auth::id())
                                                         <a class="bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700"
-                                                            href="{{ route('loans.edit', $loan->id) }}"
+                                                            href="{{ route('loans.return', $loan->id) }}"
                                                             class="btn btn-primary">Completar Prestamo</a>
+                                                        
+                                                        <a href="{{ route('loans.edit', $loan->id) }}" title="Devolver"
+                                                            class="bg-gray-600 text-center text-white p-2 rounded-md hover:bg-gray-700">Editar Prestamo</a>
+                                                        
                                                     @else
                                                         <div class="text-sm text-gray-900 dark:text-gray-100">
                                                             Prestado a {{ $loan->user->name }}

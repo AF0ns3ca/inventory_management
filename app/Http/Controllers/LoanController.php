@@ -88,6 +88,18 @@ class LoanController extends Controller
      */
     public function edit(String $id)
     {
+        //Pasamos el loan a la vista
+        return view('loans.edit', [
+            'loan' => Loan::find($id),
+            'items' => Item::all(),
+            'item_id' => Item::find(Loan::find($id)->item_id)
+
+        ]);
+        
+    }
+
+    public function return(String $id)
+    {
         //se le pone al prestamo que se recibe la fecha de retorno y se guarda
         $loan = Loan::find($id);
         $loan->returned_date = date('Y-m-d');
@@ -103,9 +115,12 @@ class LoanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Loan $loans)
+    public function update(Request $request, String $id)
     {
-        //
+        //Actualiza el prestamo con los datos que se le pasan
+        $loan = Loan::find($id);
+        $loan->update($request->all());
+        return redirect()->route('loans.index');
     }
 
     /**

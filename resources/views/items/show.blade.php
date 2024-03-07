@@ -31,10 +31,10 @@
                     <div class="w-full h-full p-4 flex justify-end items-center">
                             @if (filter_var($item->picture, FILTER_VALIDATE_URL))
                                     <img src="{{ $item->picture }}" alt="Portada Actual"
-                                        class="w-[200px] h-[200px] mt-2">
+                                        class="w-[200px] h-[200px] mt-2 rounded-md">
                             @elseif ($item->picture != null)
                                     <img src="{{ asset(Storage::url($item->picture)) }}" alt="Portada Actual"
-                                        class="w-[200px] h-[200px] mt-2">
+                                        class="w-[200px] h-[200px] mt-2 rounded-md">
                             @else
                                     <div
                                         class="flex items-center justify-center w-[200px] h-[200px] bg-gray-300 dark:bg-gray-600 rounded-md text-gray-400 dark:text-gray-500 text-lg">
@@ -51,7 +51,7 @@
                     @if($item->activeLoan())
                                                 <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full text-white bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
                                             @else
-                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full text-white bg-green-600 text-center rounded-lg p-2">Prestar</a>
+                                                <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full text-white bg-green-700 text-center rounded-lg p-2">Prestar</a>
                                             @endif
                     <form action="{{ route('items.delete', $item->id) }}" class="delete-form w-full" method="post">
                         @csrf

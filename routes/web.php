@@ -48,6 +48,12 @@ Route::resource('loans', LoanController::class);
 //Ruta a metodo create con un id
 Route::get('/loans/create/{id}', 'App\Http\Controllers\LoanController@create')->name('loans.create');
 
+// Ruta a metodo edit con un id
+Route::get('/loans/edit/{id}', 'App\Http\Controllers\LoanController@edit')->name('loans.edit');
+
+//Ruta a metodo return con un id
+Route::get('/loans/return/{id}', 'App\Http\Controllers\LoanController@return')->name('loans.return');
+
 //Ruta a metodo index del controlador de items
 // Route::get('/items', 'App\Http\Controllers\ItemController@index')->name('items.index');
 

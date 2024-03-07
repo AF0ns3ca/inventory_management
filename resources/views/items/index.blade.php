@@ -103,7 +103,7 @@
                                                 @if($item->activeLoan())
                                                     <a href="{{ route('loans.show', $item->activeLoan()->id) }}" title="Ver Prestamo" class="w-full bg-yellow-600 text-center rounded-lg p-2">Ver Prestamo</a>
                                                 @else
-                                                    <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-600 text-center rounded-lg p-2">Prestar</a>
+                                                    <a href="{{ route('loans.create',$item->id) }}" title="Prestar Item" class="w-full bg-green-700 text-center rounded-lg p-2">Prestar</a>
                                                 @endif
                                                 
                                             </div>

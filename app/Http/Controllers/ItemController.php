@@ -121,12 +121,15 @@ class ItemController extends Controller
                 // Asignar la URL como la picture
                 $validated['picture'] = $url;
             } else {
-                // En caso de que la URL no sea válida, asignar la picture base.jpg local
-                $validated['picture'] = null;
+                // En caso de que la URL no sea válida, asignar la picture que ya tenia el item
+                $item = Item::find($id);
+                $validated['picture'] = $item->picture;
+                
             }
         } else {
-            // Si no se proporciona ni un archivo ni una URL, asignar la picture null
-            $validated['picture'] = null;
+            // Si no se proporciona ni un archivo ni una URL, asignar la picture que ya tiene el item
+            $item = Item::find($id);
+            $validated['picture'] = $item->picture;
         }
 
         $item = Item::find($id);
