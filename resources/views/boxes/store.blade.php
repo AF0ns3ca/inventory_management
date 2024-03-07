@@ -5,23 +5,24 @@
         </h2>
     </x-slot>
 
-    <div class="container mx-auto py-6">
-        <div class="mx-28 bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <form action="{{ route('boxes.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="w-full flex items-center justify-center">
+        <div class="w-full max-w-3xl mx-3 my-8 bg-gray-700 rounded-lg shadow-md overflow-hidden flex items-center justify-center">
+            <form class="w-full" action="{{ route('boxes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="p-4">
+
+                <div class="w-full px-4 py-2">
                     <label for="label" class="block font-medium text-white">Label</label>
-                    <input type="text" name="label" id="label" class="form-input">
+                    <input type="text" name="label" id="label" placeholder="Label..." class="form-input w-full p-2 rounded-md">
                 </div>
-                <div class="p-4">
+                <div class="w-full px-4 py-2">
                     <label for="location" class="block font-medium text-white">Location</label>
-                    <input type="text" name="location" id="location" class="form-input">
+                    <input type="text" name="location" id="location" placeholder="Location..." class="form-input w-full p-2 rounded-md">
                 </div>
 
                 <!-- Submit button -->
-                <div class="flex justify-end p-4">
-                    <a href="{{ route('boxes.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="ml-2 btn btn-primary">Crear Caja</button>
+                <div class="w-full flex justify-center items-center p-4 gap-2">
+                    <a href="{{ route('boxes.index') }}" class="w-full cursor-pointer bg-red-600 text-center text-white rounded-md p-2">Cancel</a>
+                    <button type="submit" class="w-full cursor-pointer bg-slate-600 text-center text-white rounded-md p-2">Create Box</button>
                 </div>
             </form>
         </div>
