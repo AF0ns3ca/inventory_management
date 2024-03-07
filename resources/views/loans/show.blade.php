@@ -72,9 +72,9 @@
                     
                     <div class="w-full bg-green-600 text-center text-white rounded-lg p-2">Completo</div>
                     @endif
-                    {{-- boton para volver atras --}}
-                    <!-- boton para volver atras -->
-                    <a href="{{ route('items.index') }}" title="Volver"
+                    
+                    {{-- enlace que vuelva a la pagina anterior en la que se estuviese --}}
+                    <a href="{{ url()->previous() }}" title="Volver"
                         class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Volver</a>
 
                 </div>

@@ -58,7 +58,7 @@
                     <div class=" w-full flex justify-around p-4 gap-3">
                         <a href="{{ route('boxes.edit', $box->id) }}" title="Editar box" class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Editar Caja</a>
                         <!-- boton para volver atras -->
-                        <a href="{{ route('boxes.index') }}" title="Volver" class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Volver</a>
+                        <a href="{{ url()->previous() }}" title="Volver" class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Volver</a>
                         <form action="{{ route('boxes.delete', $box->id) }}" class="delete-form w-full"
                                                     method="post">
                                                     @csrf

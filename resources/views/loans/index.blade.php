@@ -45,7 +45,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($loans as $loan)
-                                    <tr>
+                                {{-- hacer que si haces click a la fila, te lleve a loans show --}}
+                                <tr class="cursor-pointer" onclick="window.location='{{ route('loans.show', $loan->id) }}'">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div id="nombre-usuario" class="text-sm text-gray-900 dark:text-gray-100">
                                                 {{ $loan->user->name }}
