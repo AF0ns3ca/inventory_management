@@ -35,24 +35,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('items', ItemController::class);
+Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
 //Ruta a metodo delete
-Route::delete('/items/delete/{id}', 'App\Http\Controllers\ItemController@destroy')->name('items.delete');
+Route::delete('/items/delete/{id}', 'App\Http\Controllers\ItemController@destroy')->name('items.delete')->middleware(['auth', 'verified']);
 
-Route::resource('boxes', BoxController::class);
+Route::resource('boxes', BoxController::class)->middleware(['auth', 'verified']);
 //Ruta a metodo delete
-Route::delete('/boxes/delete/{id}', 'App\Http\Controllers\BoxController@destroy')->name('boxes.delete');
+Route::delete('/boxes/delete/{id}', 'App\Http\Controllers\BoxController@destroy')->name('boxes.delete')->middleware(['auth', 'verified']);
 
-Route::resource('loans', LoanController::class);
+Route::resource('loans', LoanController::class)->middleware(['auth', 'verified']);
 
 //Ruta a metodo create con un id
-Route::get('/loans/create/{id}', 'App\Http\Controllers\LoanController@create')->name('loans.create');
+Route::get('/loans/create/{id}', 'App\Http\Controllers\LoanController@create')->name('loans.create')->middleware(['auth', 'verified']);
 
 // Ruta a metodo edit con un id
-Route::get('/loans/edit/{id}', 'App\Http\Controllers\LoanController@edit')->name('loans.edit');
+Route::get('/loans/edit/{id}', 'App\Http\Controllers\LoanController@edit')->name('loans.edit')->middleware(['auth', 'verified']);
 
 //Ruta a metodo return con un id
-Route::get('/loans/return/{id}', 'App\Http\Controllers\LoanController@return')->name('loans.return');
+Route::get('/loans/return/{id}', 'App\Http\Controllers\LoanController@return')->name('loans.return')->middleware(['auth', 'verified']);
 
 //Ruta a metodo index del controlador de items
 // Route::get('/items', 'App\Http\Controllers\ItemController@index')->name('items.index');
