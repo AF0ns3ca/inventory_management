@@ -16,11 +16,18 @@
                         <span class="text-white">Choose how to insert your picture:</span>
                         <div class="w-full">
                             <label for="picture" class="block font-medium text-white">Picture:</label>
-                            <input type="file" name="picture" id="picture" class="form-input w-full p-2 rounded-md">
+                            <div class="w-full flex flex-row justify-center">
+                                <input type="file" name="picture" id="picture" class="form-input w-full p-2 rounded-md">
+                                <button type="button" id="btn-pic" class="bg-red-600 text-white p-2 rounded-md ml-2 hover:bg-red-800">X</button>
+                            </div>
+                            
                         </div>
                         <div class="w-full">
                             <label for="url_picture" class="block font-medium text-white">URL Picture:</label>
-                            <input type="text" name="url_picture" id="url_picture" placeholder="Picture URL..." class="form-input w-full p-2 rounded-md">
+                            <div class="w-full flex flex-row justify-center">
+                                <input type="text" name="url_picture" id="url_picture" placeholder="Picture URL..." class="form-input w-full p-2 rounded-md">
+                                <button type="button" id="btn-url" class="bg-red-600 text-white p-2 rounded-md ml-2 hover:bg-red-800">X</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,4 +60,5 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('js/picture.js') }}"></script>
 </x-app-layout>
